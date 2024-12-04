@@ -22,6 +22,5 @@ public class Main {
         controllerCountry.showCountryInfo(controllerCountry.getCountry());
         controllerCountry.closeConnection();
 
-
     }
 }
