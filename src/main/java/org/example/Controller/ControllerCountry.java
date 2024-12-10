@@ -5,21 +5,9 @@ import org.example.DB.ConnectDB;
 import java.sql.*;
 
 public class ControllerCountry {
-    private ConnectDB connection = new ConnectDB();
-    private Connection con = connection.getConnection();
 
 
-    public void connectDB(){
-        try{
-            con = DriverManager.getConnection(connection.getJdbc(),connection.getUsername(),connection.getPassword());
-            System.out.println("Connected to database "+ this.getClass().getName());
-
-        }catch (SQLException e){
-            System.out.println("Error "+ e.getMessage());
-        }
-    }
-
-    public ResultSet getCountry(){
+    public ResultSet getCountry(Connection con){
         String query = "SELECT * FROM country";
         ResultSet rs = null;
         try{
@@ -45,12 +33,5 @@ public class ControllerCountry {
             System.out.println("Error "+ ex.getMessage());
         }
     }
-    public void closeConnection(){
-        try {
-            con.close();
-            System.out.println("Connection closed " + this.getClass().getName());
-        }catch (SQLException ex){
-            System.out.println("Error "+ ex.getMessage());
-        }
-    }
+
 }

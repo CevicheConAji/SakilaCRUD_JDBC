@@ -7,10 +7,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ControllerDB {
-    private ConnectDB connection = new ConnectDB();
+    private  ConnectDB connection = new ConnectDB();
     private Connection con = connection.getConnection();
 
-    public  void connectDB(){
+    public  Connection connectDB() {
         try{
             con = DriverManager.getConnection(connection.getJdbc(),connection.getUsername(),connection.getPassword());
             System.out.println("Conexion exitosa");
@@ -18,8 +18,9 @@ public class ControllerDB {
         }catch (SQLException ex){
             System.out.println("Error "+ex.getMessage());
         }
+        return con;
     }
-    public void closeConnection(){
+    public void closeConnection() {
         try{
             con.close();
             System.out.println("Conexion Cerrada");

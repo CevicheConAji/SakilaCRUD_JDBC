@@ -5,12 +5,9 @@ import org.example.DB.ConnectDB;
 import java.sql.*;
 
 public class ControllerCity {
-    private ConnectDB connection = new ConnectDB();
-    private Connection con = connection.getConnection();
 
-
-    public ResultSet getOneHundredCities(){
-        String query = "SELECT * FROM city where city_id LIMIT 100";
+    public ResultSet getOneHundredCities(Connection con){
+        String query = "SELECT * FROM city LIMIT 100";
         ResultSet config = null;
         try{
             Statement stmt = con.createStatement() ;
@@ -37,23 +34,5 @@ public class ControllerCity {
             System.out.println("Error "+ex.getMessage());
         }
     }
-    public  void connectDB(){
-        try{
-            con = DriverManager.getConnection(connection.getJdbc(),connection.getUsername(),connection.getPassword());
-            System.out.println("Conexion exitosa");
 
-        }catch (SQLException ex){
-            System.out.println("Error "+ex.getMessage());
-        }
-    }
-    public void closeConnection() {
-
-        try {
-            con.close();
-            System.out.println("Conexion Cerrada");
-
-        } catch (SQLException ex) {
-            System.out.println("Error " + ex.getMessage());
-        }
-    }
 }
